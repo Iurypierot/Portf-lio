@@ -1,3 +1,4 @@
+/* Reset */
 * {
   margin: 0;
   padding: 0;
@@ -9,15 +10,18 @@ body {
   background: #0f0f0f;
   color: #f5f5f5;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
+/* Navbar */
 header {
-  background: #111;
+  background: rgba(17, 17, 17, 0.95);
   color: #fff;
   padding: 15px 30px;
   position: sticky;
   top: 0;
   z-index: 1000;
+  backdrop-filter: blur(8px);
 }
 
 nav {
@@ -40,10 +44,12 @@ nav a {
 
 nav a:hover {
   color: #00ff99;
+  text-shadow: 0 0 10px #00ff99;
 }
 
+/* Seções */
 .section {
-  padding: 60px 20px;
+  padding: 80px 20px;
   text-align: center;
 }
 
@@ -57,21 +63,32 @@ nav a:hover {
   flex-direction: column;
 }
 
-.intro h2 span {
+.highlight {
   color: #00ff99;
+  text-shadow: 0 0 10px #00ff99;
 }
 
-.btn {
+/* Botões com glow */
+.btn.glow {
   display: inline-block;
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 12px 25px;
   background: #00ff99;
   color: #111;
-  border-radius: 5px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
+  transition: 0.3s;
+  box-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99;
 }
 
+.btn.glow:hover {
+  background: #00cc77;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99;
+}
+
+/* Sobre */
 .about-container {
   display: flex;
   flex-direction: column;
@@ -86,30 +103,34 @@ nav a:hover {
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 20px #00ff99;
   border: 4px solid #00ff99;
+  animation: float 4s ease-in-out infinite;
 }
 
+/* Habilidades e Projetos */
 .skills-grid, .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
+  gap: 25px;
+  margin-top: 30px;
 }
 
 .skill, .project-card {
   background: #1a1a1a;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-  transition: 0.3s;
+  transition: transform 0.4s, box-shadow 0.4s;
 }
 
 .skill:hover, .project-card:hover {
-  transform: scale(1.05);
-  border: 2px solid #00ff99;
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 0 20px #00ff99;
+  border: 1px solid #00ff99;
 }
 
+/* Contato */
 .socials {
   list-style: none;
   display: flex;
@@ -122,12 +143,89 @@ nav a:hover {
   color: #00ff99;
   text-decoration: none;
   font-weight: bold;
+  transition: 0.3s;
 }
 
+.socials a:hover {
+  text-shadow: 0 0 10px #00ff99;
+}
+
+/* Footer */
 footer {
   background: #111;
   color: #fff;
   text-align: center;
-  padding: 15px;
+  padding: 20px;
   margin-top: 20px;
+}
+
+/* Efeitos de animação */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease forwards;
+}
+
+.slide-in {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Scroll reveal animacao */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Menu responsivo */
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #00ffcc;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    background: #0d0d0d;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    border-radius: 10px;
+  }
+  nav ul.open {
+    display: flex;
+  }
+  .menu-toggle {
+    display: block;
+  }
 }
