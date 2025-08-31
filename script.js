@@ -15,7 +15,7 @@ document.querySelectorAll("a[href^='#']").forEach(link => {
 // Efeito typing
 // =======================
 const typing = document.querySelector(".typing");
-const text = "Desenvolvedor Front-end | Futuro Full-stack 🚀";
+const text = "Desenvolvedor Front-end 🚀";
 let index = 0;
 
 function typeEffect() {
@@ -27,9 +27,7 @@ function typeEffect() {
 }
 document.addEventListener("DOMContentLoaded", typeEffect);
 
-// =======================
-// Scroll Reveal
-// =======================
+
 const revealElements = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
@@ -42,16 +40,14 @@ function revealOnScroll() {
   });
 }
 window.addEventListener("scroll", revealOnScroll);
-revealOnScroll(); // chama no load também
+revealOnScroll(); 
 
-// =======================
-// Menu responsivo
-// =======================
-const menuToggle = document.querySelector(".menu-toggle");
-const nav = document.querySelector("nav ul");
 
-if (menuToggle) {
-  menuToggle.addEventListener("click", () => {
-    nav.classList.toggle("open");
-  });
-}
+const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.querySelector(".nav-links");
+
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+});
+
+
